@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Strength Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #4b6cb7, #182848);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ffc6;
+      color: #182848;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00e6b2;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .strong { color: #00ff99; }
+    .weak { color: #ff6666; }
+    .medium { color: #ffcc00; }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Password Strength Checker</h2>
+    <form method="POST" action="/predict">
+      <input type="text" name="password" placeholder="Enter password" required>
+      <button type="submit">Check</button>
+    </form>
+
+    {% if result %}
+      <div class="result {{ result|lower }}">
+        Password "<strong>{{ password }}</strong>" is <strong>{{ result }}</strong>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
